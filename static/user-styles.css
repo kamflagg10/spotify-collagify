@@ -1,0 +1,43 @@
+body{
+  background-color: #293a80;
+}
+
+h1{
+  font-size: 3rem;
+}
+
+.profile-display{
+  background-color: white;
+  border: solid;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  margin: 100px auto;
+}
+
+.profile-pic{
+  border-radius: 50%;
+}
+
+.inner-profile-table{
+  margin-left: 100px;
+}
+
+/* Collage */
+.collage-header{
+  text-align: center;
+}
+
+.collage-filter{
+  height: 40px;
+  width: 150px;
+}
+
+.dropdown-table{
+  margin: 25px auto;
+}
+
+.filter-button{
+  height: 40px;
+  width: 150px;
+  border-radius: 20px;
+}

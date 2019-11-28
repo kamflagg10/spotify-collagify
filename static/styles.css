@@ -1,0 +1,83 @@
+body{
+  margin: 0;
+}
+
+h1{
+  margin: 0;
+  font-size: 5rem;
+}
+
+h2{
+  font-size: 3rem;
+}
+
+h3{
+  font-size: 2rem;
+}
+
+/* Welcome to Spotify Collagify */
+.top{
+  background-color: #293a80;
+}
+
+.login-button{
+  background-color: #537ec5;
+  border-radius: 40px;
+  border-style: none;
+  height: 60px;
+  font-size: 20px;
+  width: 250px;
+}
+
+.welcome-image{
+  padding-left: 200px;
+}
+
+.welcome-message{
+
+}
+
+.welcome-table{
+  padding: 10%;
+  width: 80%;
+}
+
+/* Current Features */
+.middle{
+  text-align: center;
+  padding: 50px 0 200px;
+  background-color: #537ec5;
+}
+
+.choose-artists{
+  padding-right: 100px;
+}
+.features-table{
+  margin: 0 auto;
+  text-align: center;
+
+}
+
+.sort-by-time{
+  padding: 0 120px;
+}
+
+/* Features Coming Soon */
+.bottom{
+  background-color: #293a80;
+  text-align: center;
+  padding: 200px 0;
+}
+
+.new-features{
+  padding-top: 100px;
+  margin: 0 auto;
+}
+
+/*Footer */
+footer{
+  background-color: #537ec5;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 50px 0;
+}

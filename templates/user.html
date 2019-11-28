@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome, {{username}}</title>
+    <link rel="stylesheet" href="../static/user-styles.css">
+  </head>
+
+
+
+  <body>
+  <h1>Welcome, {{username}}!</h1>
+  <table class="profile-display">
+    <tr>
+      <td>
+        <img class="profile-pic" src={{profile_pic}} alt="user-profile-image">
+      </td>
+      <td>
+        <table class="inner-profile-table">
+          <tr>
+            <td>
+              <p>{{username}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>following {{followers}} followers</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>{{sub_type}} Spotify subscription</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <div class="collage-header">
+    <h1>Generate Your Collage</h1>
+    <h3>Choose between artists and tracks, the time frame, and size of the collage.</h3>
+    <table class="dropdown-table">
+      <tr>
+        <td>
+          <select class="collage-filter" name="artist-track-selection">
+          <option value="">Artists</option>
+          <option value="">Tracks</option>
+          </select>
+        </td>
+        <td>
+          <select class="collage-filter" name="time-frame-selection">
+          <option value="month1">Past Month</option>
+          <option value="month6">6 Months</option>
+          <option value="alltime">All Time</option>
+          </select>
+        </td>
+        <td>
+          <select class="collage-filter" name="size-selection">
+            <option value="three">3 x 3</option>
+          </select>
+        </td>
+        <td>
+          <button class="filter-button" type="button" name="apply">Apply Filters</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <h1>Top Tracks:</h1>
+  {% for item in artwork_list%}
+	<img src= {{item}} alt="top track artwork">
+	{% endfor %}
+  <script type="text/javascript" src="/static/user.js"></script>
+  </body>
+</html>
