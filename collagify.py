@@ -123,7 +123,7 @@ def generate_collage():
                 'url': item['images'][1]['url']
             })
 
-    if len(artwork['items']) < int(size):
+    if len(artwork['items']) < size*size:
         return jsonify({'error': f'Not enough {collage_type} to create the collage! Please try a smaller size.'})
 
     return json.dumps(artwork)

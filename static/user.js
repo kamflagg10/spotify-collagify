@@ -22,17 +22,23 @@ $(document).ready(function(){
              $(id).attr('src', artwork.items[item].url);
              console.log(artwork.items[item].url);
             }
-            $('.four').toggle();
+            $('.three').hide();
+            $('.four').show();
 
           }
+         else{
           for (item=0; item < artwork.items.length; item++){
              id = '#' + item.toString();
              $(id).attr('src', artwork.items[item].url);
              console.log(artwork.items[item].url);
            }
-          $('.three').toggle();
+          $('.four').hide();
+          $('.three').show();
+         }
         }
         else{
+          $('.three').hide();
+          $('.four').hide();
           alert(data.error)
         }
 
