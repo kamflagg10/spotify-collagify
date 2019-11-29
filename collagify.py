@@ -1,12 +1,13 @@
-# import spotipy
-# import spotipy.util as util
-
 import json
-from flask import Flask, request, redirect, g, render_template
+from flask import Flask, request, redirect, g, render_template, jsonify, session
+from flask_session import Session
 import requests
 from urllib.parse import urlencode
 app = Flask(__name__)
 
+SESSION_TYPE = 'filesystem'
+app.config.from_object(__name__)
+Session(app)
 
 # Spotify URLs
 spotify_auth_url = "https://accounts.spotify.com/authorize"
@@ -19,7 +20,8 @@ client_id = '4bdea43ff15c49be84c7a1ea44cc3ec7'
 client_secret = 'my-secret-client-id'
 redirect_uri = 'http://localhost:5000/callback'
 
-params = urlencode({
+
+auth_params = urlencode({
                 'client_id': client_id,
                 'response_type': 'code',
                 'redirect_uri': redirect_uri,
@@ -32,60 +34,91 @@ params = urlencode({
 def home_page():
     return render_template("index.html")
 
-
+# Authorize the user
 @app.route("/authorize")
 def index():
-    # Auth Step 1: Authorization
-    return redirect(spotify_auth_url + '?' + params)
+    return redirect(spotify_auth_url + '?' + auth_params)
 
 
-# Retrieve access and refresh tokens if authorization was successful.
-@app.route('/callback')
-def callback():
-    auth_code = request.args['code']
+# Retrieve access token from Spotify (needed to make API calls)
+def get_access_token(code):
     token_params = {
         'grant_type': 'authorization_code',
-        'code': str(auth_code),
+        'code': str(code),
         'redirect_uri': redirect_uri,
         'client_id': client_id,
         'client_secret': client_secret
     }
 
     token_response = requests.post(token_url, data=token_params)
-    print(f'Token status code: {token_response.status_code}')
-    if token_response.status_code == 200:
+    if token_response.status_code < 300:
         access_token = token_response.json()['access_token']
-        expires_in = token_response.json()['expires_in']
-        refresh_token = token_response.json()['refresh_token']
+        return access_token
     else:
-        return "Bad Request, Try Again"
+        return None
 
-    auth_header = {
-        'Authorization': f'Bearer {access_token}'
+
+# Get access token, request user data.
+@app.route('/callback')
+def callback():
+    auth_code = request.args['code']
+    token = get_access_token(auth_code)
+    session['token'] = token
+    if token:
+        auth_header = {
+            'Authorization': f'Bearer {token}'
+        }
+        # Requesting basic user data
+        user_info_endpoint = api_base_url + '/me'
+        user_api_response = requests.get(user_info_endpoint, headers=auth_header)
+        user_name = user_api_response.json()['display_name']
+        followers = user_api_response.json()['followers']['total']
+        sub_type = user_api_response.json()['product']
+        profile_pic = user_api_response.json()['images'][0]['url']
+
+        return render_template('user.html', username=user_name, followers=followers, sub_type=sub_type,
+                               profile_pic=profile_pic)
+    else:
+        return render_template('error.html')
+
+
+# Get access token, request user listening history
+@app.route('/collage', methods=['POST'])
+def generate_collage():
+    user_filters = request.form.to_dict()
+    token = session['token']
+
+    collage_type = user_filters['collage_type']
+    time_frame = user_filters['time_frame']
+    size = user_filters['size']
+
+    top_endpoint = api_base_url + f'/me/top/{collage_type}'
+    top_params = {
+        'limit': size,
+        'time_range': time_frame
     }
 
-    # Requesting basic user data
-    user_info_endpoint = api_base_url + '/me'
-    user_api_response = requests.get(user_info_endpoint, headers=auth_header)
-    user_name = user_api_response.json()['display_name']
-    followers = user_api_response.json()['followers']['total']
-    sub_type = user_api_response.json()['product']
-    profile_url = user_api_response.json()['images'][0]['url']
-
-    # Requesting user's listening history (Top Tracks/Artists)
-    top_endpoint = api_base_url + '/me/top/tracks'
-    top_params = {
-        'limit': 9,
-        'time_range': 'short_term'
+    auth_header = {
+        'Authorization': f'Bearer {token}'
     }
 
     top_response = requests.get(top_endpoint, headers=auth_header, params=top_params)
-    artwork_list = []
-    for top_track in top_response.json()['items']:
-        # print(top_track['album']['images'])
-        artwork_list.append(top_track['album']['images'][1]['url'])
+    artwork = {}    # artwork dictionary:  [artist or track name] = url of image
 
-    return render_template("user.html", username=user_name, followers=followers, sub_type=sub_type, profile_pic=profile_url, top_track=top_track, artwork_list=artwork_list)
+    if top_response.status_code >= 300:
+        return json.dumps({'error': 'Unsuccessful request. Try logging in again!'})
+
+    if collage_type == 'tracks':
+        for item in top_response.json()['items']:
+            artwork[item['name']] = item['album']['images'][1]['url']
+    else:
+        for item in top_response.json()['items']:
+            artwork[item['name']] = item['images'][1]['url']
+
+    if len(artwork) < int(size):
+        return jsonify({'error': f'Not enough {collage_type} to create the collage! Try a smaller size'})
+
+    return json.dumps(artwork)
 
 
 if __name__ == "__main__":
