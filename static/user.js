@@ -12,7 +12,17 @@ $(document).ready(function(){
         })
 
         .done(function(data) {
-          alert(data.error);
+        if (!data.hasOwnProperty('error')){
+          artwork = JSON.parse(data);
+          var item;
+          for (item=0; item < artwork.items.length; item++){
+             console.log(artwork.items[item]);
+           }
+        }
+        else{
+          alert(data.error)
+        }
+
         })
 
         event.preventDefault();

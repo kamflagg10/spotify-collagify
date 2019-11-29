@@ -103,20 +103,28 @@ def generate_collage():
     }
 
     top_response = requests.get(top_endpoint, headers=auth_header, params=top_params)
-    artwork = {}    # artwork dictionary:  [artist or track name] = url of image
+    artwork = {
+        'items': []
+    }
 
     if top_response.status_code >= 300:
         return json.dumps({'error': 'Unsuccessful request. Try logging in again!'})
 
     if collage_type == 'tracks':
         for item in top_response.json()['items']:
-            artwork[item['name']] = item['album']['images'][1]['url']
+            artwork['items'].append({
+                'name': item['name'],
+                'url': item['album']['images'][1]['url']
+                 })
     else:
         for item in top_response.json()['items']:
-            artwork[item['name']] = item['images'][1]['url']
+            artwork['items'].append({
+                'name': item['name'],
+                'url': item['images'][1]['url']
+            })
 
-    if len(artwork) < int(size):
-        return jsonify({'error': f'Not enough {collage_type} to create the collage! Try a smaller size'})
+    if len(artwork['items']) < int(size):
+        return jsonify({'error': f'Not enough {collage_type} to create the collage! Please try a smaller size.'})
 
     return json.dumps(artwork)
 
