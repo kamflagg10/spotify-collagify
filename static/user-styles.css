@@ -22,7 +22,7 @@ h1{
   margin-left: 100px;
 }
 
-/* Collage */
+/* Collage Header and Filters */
 .collage-header{
   text-align: center;
 }
@@ -40,4 +40,18 @@ h1{
   height: 40px;
   width: 150px;
   border-radius: 20px;
+}
+
+/* Collage */
+.col{
+ flex-grow: 0;
+ height: 300px;
+ padding: 0;
+ width: 300px;
+}
+
+.row{
+  height: 900px;
+  margin: 0 auto;
+  width: 900px;
 }

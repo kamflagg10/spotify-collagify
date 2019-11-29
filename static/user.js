@@ -16,7 +16,9 @@ $(document).ready(function(){
           artwork = JSON.parse(data);
           var item;
           for (item=0; item < artwork.items.length; item++){
-             console.log(artwork.items[item]);
+             id = '#' + item.toString();
+             $(id).attr('src', artwork.items[item].url);
+             console.log(artwork.items[item].url);
            }
         }
         else{

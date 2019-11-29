@@ -79,7 +79,7 @@ def callback():
         return render_template('user.html', username=user_name, followers=followers, sub_type=sub_type,
                                profile_pic=profile_pic)
     else:
-        return render_template('error.html')
+        return 'error' # render_template('error.html')
 
 
 # Get access token, request user listening history
@@ -90,11 +90,11 @@ def generate_collage():
 
     collage_type = user_filters['collage_type']
     time_frame = user_filters['time_frame']
-    size = user_filters['size']
+    size = int(user_filters['size'])
 
     top_endpoint = api_base_url + f'/me/top/{collage_type}'
     top_params = {
-        'limit': size,
+        'limit': f'{size*size}',
         'time_range': time_frame
     }
 
