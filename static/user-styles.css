@@ -6,6 +6,11 @@ h1{
   font-size: 3rem;
 }
 
+img{
+  height: 225px;
+  width: 225px;
+}
+
 .profile-display{
   background-color: white;
   border: solid;
@@ -45,13 +50,21 @@ h1{
 /* Collage */
 .col{
  flex-grow: 0;
- height: 300px;
+ height: 225px;
  padding: 0;
- width: 300px;
+ width: 225px;
+}
+
+.three{
+ height: 675px;
+ width: 675px;
+}
+
+.four{
+ height: 900px;
+ width: 900px;
 }
 
 .row{
-  height: 900px;
   margin: 0 auto;
-  width: 900px;
 }
