@@ -1,54 +1,75 @@
-body{
-  background-color: #293a80;
+body {
+  background: #8360c3;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #2ebf91, #8360c3);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #2ebf91, #8360c3);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-h1{
-  margin: 0;
-  font-size: 5rem;
+h1 {
+  margin: 0 0 20px;
+  font-family: 'Lobster', cursive;
+  font-size: 6rem;
 }
 
-h2{
+h2 {
+  font-family: 'Lobster', cursive;
   font-size: 3rem;
 }
 
-h3{
+h3 {
+  font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
 }
 
-img{
+img {
   height: 225px;
   width: 225px;
 }
 
-/* Welcome*/
-.welcome-table{
-  margin: 70px auto;
+p {
+  font-family: 'Montserrat', sans-serif;
 }
 
-.welcome-message{
+.logo {
+  font-family: 'Lobster', cursive;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+/* Welcome*/
+.welcome-table {
+  margin: 30px auto 0;
+}
+
+.welcome-message {
+  padding-left: 50px;
   padding-right: 50px;
   width: 600px;
 }
-.login-button{
-  background-color: #537ec5;
+
+.login-button {
+  background-color: #2ebf91;
   border-radius: 40px;
   border-style: none;
   height: 60px;
   font-size: 20px;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 250px;
 }
 
 /*Image Table*/
-.welcome-image{
-    height: 675px;
-    width: 675px;
+.welcome-image {
+  background-color: black;
+  height: 675px;
+  width: 675px;
 }
 
-.row{
-    height: 675px;
-    width: 675px;
-    margin: 0;
+.row {
+  height: 675px;
+  width: 675px;
+  margin: 0;
 }
 
 /* For flipping images in the collage */
@@ -80,33 +101,4 @@ img{
 
 .back {
   transform: rotateY(180deg);
-}
-
-
-/* Features */
-.middle{
-  text-align: center;
-  padding: 50px 0 200px;
-  background-color: #537ec5;
-}
-
-.choose-artists{
-  padding-right: 100px;
-}
-.features-table{
-  margin: 0 auto;
-  text-align: center;
-
-}
-
-.sort-by-time{
-  padding: 0 120px;
-}
-
-/*Footer */
-footer{
-  background-color: #293a80;
-  font-size: 1.5rem;
-  text-align: center;
-  padding: 50px 0;
 }
