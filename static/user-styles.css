@@ -1,9 +1,24 @@
-body{
-  background-color: #293a80;
+body {
+  background: #8360c3;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #2ebf91, #8360c3);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #2ebf91, #8360c3);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+button{
+  font-size: 1.4rem;
+  height: 45px;
+  width: 170px;
+  border-radius: 20px;
+  margin-right: 10px;
 }
 
 h1{
-  font-size: 3rem;
+  font-size: 5rem;
+  font-family: 'Lobster', cursive;
+  margin-bottom: 20px;
 }
 
 img{
@@ -11,24 +26,27 @@ img{
   width: 225px;
 }
 
-.profile-display{
-  background-color: white;
-  border: solid;
-  border-radius: 15px;
-  font-size: 1.5rem;
-  margin: 100px auto;
+select{
+    background-color: transparent;
+    border-style: none;
+    font-size: 1.4rem;
+}
+
+.logo-text{
+margin: 15px 0 20px 10px;
+font-family: 'Lobster', cursive;
+}
+
+.top{
+    margin: 150px auto;
 }
 
 .profile-pic{
   border-radius: 50%;
 }
 
-.inner-profile-table{
-  margin-left: 100px;
-}
-
 /* Collage Header and Filters */
-.collage-header{
+.filters-display{
   text-align: center;
 }
 
@@ -41,10 +59,11 @@ img{
   margin: 25px auto;
 }
 
-.filter-button{
-  height: 40px;
-  width: 150px;
-  border-radius: 20px;
+/* [Artists/Tracks] List*/
+.collage-list{
+  margin-left: 75px;
+  font-size: 2rem;
+  position: absolute;
 }
 
 /* Collage */
@@ -57,14 +76,18 @@ img{
 
 .three{
  height: 675px;
+ margin-left: 600px;
  width: 675px;
 }
 
 .four{
  height: 900px;
+ margin-left: 500px;
  width: 900px;
 }
 
-.row{
+/*.row{
   margin: 0 auto;
-}
+}*/
+
+

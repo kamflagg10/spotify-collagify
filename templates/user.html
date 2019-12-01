@@ -6,64 +6,44 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="{{ url_for('static', filename='user.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/user-styles.css">
   </head>
 
 
 
   <body>
-  <h1>Welcome, {{username}}!</h1>
-  <table class="profile-display">
-    <tr>
-      <td>
-        <img class="profile-pic" src={{profile_pic}} alt="user-profile-image">
-      </td>
-      <td>
-        <table class="inner-profile-table">
-          <tr>
-            <td>
-              <p>{{username}}</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>following {{followers}}</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>{{sub_type}} Spotify subscription</p>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-
-  <div class="collage-header">
+  <h4 class="logo-text">Spotify Collagify</h4>
+    <div class="filters-display">
     <h1>Generate Your Collage</h1>
-    <h3>Choose between artists and tracks, the time frame, and size of the collage.</h3>
+    <h3>Choose artists or tracks, the time range, and size.</h3>
     <form name="filter_form">
     <table class="dropdown-table">
       <tr>
         <td>
+          <button type="button">
           <select class="collage-filter" id="collage_type">
             <option value="artists">Artists</option>
             <option value="tracks">Tracks</option>
           </select>
+            </button>
         </td>
         <td>
+          <button type="button">
           <select class="collage-filter" id="time_frame">
             <option value="short_term">Past Month</option>
             <option value="medium_term">6 Months</option>
             <option value="long_term">All Time</option>
           </select>
+            </button>
         </td>
         <td>
+          <button type="button">
           <select class="collage-filter" id="size">
             <option value="3">3 x 3</option>
             <option value="4">4 x 4</option>
           </select>
+             </button>
         </td>
         <td>
           <button class="filter-button" type="submit">Apply Filters</button>
@@ -73,6 +53,8 @@
     </form>
   </div>
 
+<!--List of Tracks or Artists-->
+<ol class="collage-list"></ol>
   <!-- Collage -->
   <div class="three row" style="display: none;">
   <div class="col">
@@ -159,6 +141,5 @@
     <img id="four15" src="" alt="collage-image">
   </div>
 </div>
-
   </body>
 </html>
