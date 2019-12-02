@@ -1,5 +1,5 @@
 import json
-from flask import Flask, request, redirect, g, render_template, jsonify, session
+from flask import Flask, request, redirect, g, render_template, jsonify, session, url_for
 from flask_session import Session
 import requests
 from urllib.parse import urlencode
@@ -8,6 +8,7 @@ app = Flask(__name__)
 SESSION_TYPE = 'filesystem'
 app.config.from_object(__name__)
 Session(app)
+
 
 # Spotify URLs
 spotify_auth_url = "https://accounts.spotify.com/authorize"
@@ -26,7 +27,7 @@ auth_params = urlencode({
                 'response_type': 'code',
                 'redirect_uri': redirect_uri,
                 'scope': 'user-follow-read user-top-read user-read-private',
-                'show_dialog': 'true'
+                #'show_dialog': 'true'
             })
 
 
@@ -79,7 +80,8 @@ def callback():
         return render_template('user.html', username=user_name, followers=followers, sub_type=sub_type,
                                profile_pic=profile_pic)
     else:
-        return 'error' # render_template('error.html')
+        # Do a re-login if user refreshes the page, or whenever there's a problem with the token.
+        return redirect('/authorize')
 
 
 # Get access token, request user listening history
@@ -108,7 +110,7 @@ def generate_collage():
     }
 
     if top_response.status_code >= 300:
-        return json.dumps({'error': 'Unsuccessful request. Try logging in again!'})
+        return json.dumps({'error': 'Unsuccessful request. Try refreshing the page.'})
 
     if collage_type == 'tracks':
         for item in top_response.json()['items']:
