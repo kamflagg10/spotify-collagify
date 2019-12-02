@@ -5,10 +5,11 @@ body {
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #2ebf91, #8360c3);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: 'Montserrat', sans-serif;
 }
 
 button{
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   height: 45px;
   width: 170px;
   border-radius: 20px;
@@ -29,7 +30,7 @@ img{
 select{
     background-color: transparent;
     border-style: none;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .logo-text{
@@ -52,7 +53,7 @@ font-family: 'Lobster', cursive;
 
 .collage-filter{
   height: 40px;
-  width: 150px;
+  width: 160px;
 }
 
 .dropdown-table{
@@ -64,6 +65,8 @@ font-family: 'Lobster', cursive;
   margin-left: 75px;
   font-size: 2rem;
   position: absolute;
+  overflow-wrap: break-word;
+  width: 500px;
 }
 
 /* Collage */
@@ -76,18 +79,28 @@ font-family: 'Lobster', cursive;
 
 .three{
  height: 675px;
- margin-left: 600px;
+ /*margin-left: 600px;*/
  width: 675px;
 }
 
 .four{
  height: 900px;
- margin-left: 500px;
+ /*margin-left: 500px;*/
  width: 900px;
 }
 
-/*.row{
+.row{
   margin: 0 auto;
-}*/
+}
 
-
+.display-text{
+    bottom: 0px;
+    color: white;
+    font-size: 1.1rem;
+    hyphens: auto;
+    line-height: 25px;
+    margin-bottom: 0;
+    overflow-wrap: break-word;
+    position: absolute;
+    text-shadow: black 0 1px 10px;
+}
