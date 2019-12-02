@@ -62,11 +62,11 @@ font-family: 'Lobster', cursive;
 
 /* [Artists/Tracks] List*/
 .collage-list{
-  margin-left: 75px;
+  margin-left: 50px;
   font-size: 2rem;
   position: absolute;
   overflow-wrap: break-word;
-  width: 500px;
+  width: 400px;
 }
 
 /* Collage */
@@ -79,13 +79,11 @@ font-family: 'Lobster', cursive;
 
 .three{
  height: 675px;
- /*margin-left: 600px;*/
  width: 675px;
 }
 
 .four{
  height: 900px;
- /*margin-left: 500px;*/
  width: 900px;
 }
 
@@ -93,6 +91,7 @@ font-family: 'Lobster', cursive;
   margin: 0 auto;
 }
 
+/* Text Overlay on Collage Images */
 .display-text{
     bottom: 0px;
     color: white;
