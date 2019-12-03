@@ -8,7 +8,7 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-button{
+button {
   font-size: 1.2rem;
   height: 45px;
   width: 170px;
@@ -16,52 +16,60 @@ button{
   margin-right: 10px;
 }
 
-h1{
+h1 {
   font-size: 5rem;
   font-family: 'Lobster', cursive;
   margin-bottom: 20px;
 }
 
-img{
+img {
   height: 225px;
   width: 225px;
 }
 
-select{
-    background-color: transparent;
-    border-style: none;
+select {
+  background-color: transparent;
+  border-style: none;
+  font-size: 1.2rem;
+}
+
+.logo-text {
+  margin: 15px 0 20px 10px;
+  font-family: 'Lobster', cursive;
+}
+
+.logout{
     font-size: 1.2rem;
+    color: black;
+    margin-left: 1325px;
+    position: absolute;
 }
 
-.logo-text{
-margin: 15px 0 20px 10px;
-font-family: 'Lobster', cursive;
+
+.top {
+  margin: 150px auto;
 }
 
-.top{
-    margin: 150px auto;
-}
-
-.profile-pic{
+.profile-pic {
   border-radius: 50%;
 }
 
 /* Collage Header and Filters */
-.filters-display{
+.filters-display {
   text-align: center;
 }
 
-.collage-filter{
+.collage-filter {
   height: 40px;
   width: 160px;
 }
 
-.dropdown-table{
+.dropdown-table {
   margin: 25px auto;
 }
 
 /* [Artists/Tracks] List*/
-.collage-list{
+.collage-list {
   margin-left: 50px;
   font-size: 2rem;
   position: absolute;
@@ -70,36 +78,36 @@ font-family: 'Lobster', cursive;
 }
 
 /* Collage */
-.col{
- flex-grow: 0;
- height: 225px;
- padding: 0;
- width: 225px;
+.col {
+  flex-grow: 0;
+  height: 225px;
+  padding: 0;
+  width: 225px;
 }
 
-.three{
- height: 675px;
- width: 675px;
+.three {
+  height: 675px;
+  width: 675px;
 }
 
-.four{
- height: 900px;
- width: 900px;
+.four {
+  height: 900px;
+  width: 900px;
 }
 
-.row{
+.row {
   margin: 0 auto;
 }
 
 /* Text Overlay on Collage Images */
-.display-text{
-    bottom: 0px;
-    color: white;
-    font-size: 1.1rem;
-    hyphens: auto;
-    line-height: 25px;
-    margin-bottom: 0;
-    overflow-wrap: break-word;
-    position: absolute;
-    text-shadow: black 0 1px 10px;
+.display-text {
+  bottom: 0;
+  color: white;
+  font-size: 1.1rem;
+  hyphens: auto;
+  line-height: 25px;
+  margin-bottom: 0;
+  overflow-wrap: break-word;
+  position: absolute;
+  text-shadow: black 0 1px 10px;
 }
