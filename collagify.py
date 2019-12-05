@@ -1,8 +1,9 @@
-import json
-from flask import Flask, request, redirect, g, render_template, jsonify, session, url_for
+from flask import Flask, request, redirect, render_template, jsonify, session
 from flask_session import Session
-import requests
 from urllib.parse import urlencode
+import requests
+import json
+
 app = Flask(__name__)
 
 SESSION_TYPE = 'filesystem'
@@ -26,11 +27,10 @@ auth_params = urlencode({
                 'client_id': client_id,
                 'response_type': 'code',
                 'redirect_uri': redirect_uri,
-                'scope': 'user-follow-read user-top-read user-read-private',
-                #'show_dialog': 'true'
+                'scope': 'user-follow-read user-top-read user-read-private'
             })
 
-
+# Login/Homepage
 @app.route('/')
 def home_page():
     return render_template("index.html")
@@ -65,20 +65,18 @@ def callback():
     auth_code = request.args['code']
     token = get_access_token(auth_code)
     session['token'] = token
+
     if token:
         auth_header = {
             'Authorization': f'Bearer {token}'
         }
+
         # Requesting basic user data
         user_info_endpoint = api_base_url + '/me'
         user_api_response = requests.get(user_info_endpoint, headers=auth_header)
         user_name = user_api_response.json()['display_name']
-        followers = user_api_response.json()['followers']['total']
-        sub_type = user_api_response.json()['product']
-        profile_pic = user_api_response.json()['images'][0]['url']
 
-        return render_template('user.html', username=user_name, followers=followers, sub_type=sub_type,
-                               profile_pic=profile_pic)
+        return render_template('user.html', username=user_name)
     else:
         # Do a re-login if user refreshes the page, or whenever there's a problem with the token.
         return redirect('/authorize')

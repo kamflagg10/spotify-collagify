@@ -38,23 +38,18 @@ select {
   font-family: 'Lobster', cursive;
 }
 
-.logout{
-    font-size: 1.2rem;
-    color: black;
-    margin-left: 1325px;
-    position: absolute;
+.logout {
+  font-size: 1.2rem;
+  color: black;
+  margin-left: 1325px;
+  position: absolute;
 }
 
-
+/* Collage Header and Filters */
 .top {
   margin: 150px auto;
 }
 
-.profile-pic {
-  border-radius: 50%;
-}
-
-/* Collage Header and Filters */
 .filters-display {
   text-align: center;
 }

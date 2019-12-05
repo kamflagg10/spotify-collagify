@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $('form').on('submit', function(event) {
 
-    //Request to server
+    //Request to server with form data
     $.ajax({
         data: {
           collage_type: $('#collage_type').val(),
@@ -12,7 +12,9 @@ $(document).ready(function() {
         url: '/collage'
       })
 
+      //Utilize data from request
       .done(function(data) {
+
         if (!data.hasOwnProperty('error')) {
           artwork = JSON.parse(data);
           var display_style = $('#display').val();
@@ -41,7 +43,7 @@ $(document).ready(function() {
             $(id + item.toString()).next().text(artwork.items[item].name);
             $('.collage-list').append('<li>' + artwork.items[item].name + '</li>');
           }
-          console.log("made collage first.")
+
           //All three options are on initially. Only keep the style from input
           if (display_style == 'overlay')
             $('.collage-list').hide();
@@ -70,6 +72,8 @@ $(document).ready(function() {
   $('.logout').click(function() {
     const url = 'https://www.spotify.com/logout/';
     const logout_window = window.open(url, 'Spotify Logout', 'width=500,height=500,top=40,left=40');
-    setTimeout(function(){ logout_window.close();}, 3000);
+    setTimeout(function() {
+      logout_window.close();
+    }, 3000);
   });
 });
