@@ -1,3 +1,4 @@
+from auth_info import secret_id, client_id
 from flask import Flask, request, redirect, render_template, jsonify, session
 from flask_session import Session
 from urllib.parse import urlencode
@@ -18,8 +19,8 @@ api_base_url = "https://api.spotify.com/v1"
 
 
 # My Application Information
-client_id = '4bdea43ff15c49be84c7a1ea44cc3ec7'
-client_secret = 'my-secret-client-id'
+client_id = client_id()
+client_secret = secret_id()
 redirect_uri = 'http://localhost:5000/callback'
 
 
