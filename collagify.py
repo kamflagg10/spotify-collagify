@@ -21,7 +21,7 @@ api_base_url = "https://api.spotify.com/v1"
 # My Application Information
 client_id = os.environ.get('client-id')
 client_secret = os.environ.get('secret-id')
-redirect_uri = 'http://localhost:5000/callback'
+redirect_uri = 'https://spotify-collagify.herokuapp.com/callback'
 
 
 auth_params = urlencode({
